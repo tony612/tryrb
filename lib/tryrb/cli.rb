@@ -1,3 +1,5 @@
+require 'tryrb/config'
+
 module TryRb
   class CLI
     @editor = "mvim"
