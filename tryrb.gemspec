@@ -1,11 +1,18 @@
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'tryrb/version'
+
 Gem::Specification.new do |s|
   s.name        = 'tryrb'
-  s.version     = '0.0.0'
-  s.licenses    = ['MIT']
-  s.summary     = "Try ruby code in a temporary file created."
-  s.description = "This gem will open a temporary ruby file to let you try some code and save the file in a temporary directory."
+  s.version     = TryRb::Version
+  s.licenses    = %w[MIT]
+  s.summary     = %q{Try ruby code in a temporary file created.}
+  s.description = s.summary
   s.authors     = ["Tony Han"]
   s.email       = 'h.bing612@gmail.com'
-  s.files       = ["lib/tryrb.rb"]
+  s.files       = %w(Rakefile tryrb.gemspec)
+  s.files       += Dir.glob('lib/**/*.rb')
+  s.files       += Dir.glob('spec/**/*')
+  s.require_paths = ["lib"]
   s.homepage    = 'https://github.com/tony612/tryrb'
 end
