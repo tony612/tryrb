@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.description = s.summary
   s.authors     = ["Tony Han"]
   s.email       = 'h.bing612@gmail.com'
-  s.files       = %w(Rakefile tryrb.gemspec)
+  s.files       = %w(LICENSE.md Rakefile tryrb.gemspec)
   s.files       += Dir.glob('lib/**/*.rb')
   s.files       += Dir.glob('spec/**/*')
   s.require_paths = ["lib"]
