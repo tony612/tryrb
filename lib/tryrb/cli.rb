@@ -7,7 +7,7 @@ module TryRb
     class << self
       attr_writer :config
       def start(args)
-        system(@config.editor, fullpath(args[0]))
+        system([@config.editor, fullpath(args[0])] * ' ')
       end
 
       def fullpath(filename)
