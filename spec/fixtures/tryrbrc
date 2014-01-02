@@ -1,2 +1,3 @@
 ---
 tmp_dir: ~/tmp/foo/tryrb
+editor: emacs

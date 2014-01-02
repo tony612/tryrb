@@ -6,13 +6,15 @@ module TryRb
     attr_reader :path
     FILE_NAME = '.tryrbrc'
 
+    %w[tmp_dir editor].each do |key|
+      define_method key.to_sym do
+        @data[key]
+      end
+    end
+
     def initialize
       @path = File.join(File.expand_path('~'), FILE_NAME)
       @data = load_file
-    end
-
-    def tmp_dir
-      @data['tmp_dir']
     end
 
     def path=(path)
@@ -31,7 +33,8 @@ module TryRb
     private
 
       def default_config
-        {'tmp_dir' => "~/tmp/tryrb"}
+        {'tmp_dir' => "~/tmp/tryrb",
+         'editor'  => 'mvim'}
       end
   end
 end

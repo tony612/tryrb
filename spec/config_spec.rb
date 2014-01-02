@@ -20,6 +20,14 @@ describe TryRb::Config do
     end
   end
 
+  describe '#editor' do
+    it "returns editor" do
+      config = TryRb::Config.instance
+      config.path = fixture_file_path('tryrbrc')
+      expect(config.editor).to eq 'emacs'
+    end
+  end
+
   describe '#path=' do
     it 'overrides path' do
       config = TryRb::Config.instance
@@ -29,7 +37,7 @@ describe TryRb::Config do
     it 'reloads data' do
       config = TryRb::Config.instance
       config.path = fixture_file_path('tryrbrc')
-      expect(config.load_file.keys).to eq %w[tmp_dir]
+      expect(config.load_file.keys).to eq %w[tmp_dir editor]
     end
   end
 
