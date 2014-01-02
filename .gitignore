@@ -1,0 +1,11 @@
+*.gem
+*.swp
+*.swo
+.bundle
+.rvmrc
+.yardoc
+Gemfile.lock
+doc/*
+log/*
+pkg/*
+tmp/*
