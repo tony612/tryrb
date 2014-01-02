@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.files       = %w(LICENSE.md Rakefile tryrb.gemspec)
   s.files       += Dir.glob('lib/**/*.rb')
   s.files       += Dir.glob('spec/**/*')
+  s.executables << 'tryrb'
   s.require_paths = ["lib"]
   s.homepage    = 'https://github.com/tony612/tryrb'
 end
