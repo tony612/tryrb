@@ -16,4 +16,5 @@ Gem::Specification.new do |s|
   s.executables << 'tryrb'
   s.require_paths = ["lib"]
   s.homepage    = 'https://github.com/tony612/tryrb'
+  s.add_dependency 'thor'
 end

@@ -1,17 +1,26 @@
-require 'tryrb/config'
 require 'fileutils'
+require 'thor'
+require 'tryrb/config'
 
 module TryRb
-  class CLI
-    @config = TryRb::Config.instance
-    class << self
-      attr_writer :config
-      def start(args)
-        system([@config.editor, fullpath(args[0])] * ' ')
-      end
+  class CLI < Thor
+    def initialize(*)
+      @config = TryRb::Config.instance
+      super
+    end
 
-      def fullpath(filename)
-        filename = get_filename(filename)
+    desc "open [FILENAME]", 'open a file to edit (short-cut alias: "o")'
+    def open(key_name="")
+      @key_name = key_name
+      system([@config.editor, fullpath] * ' ')
+    end
+
+    map 'o' => :open
+
+    private
+
+      def fullpath
+        filename = get_filename
         expanded_path = File.expand_path(@config.tmp_dir)
         FileUtils.mkdir_p expanded_path unless Dir.exists?(expanded_path)
         File.join @config.tmp_dir, filename
@@ -27,11 +36,10 @@ module TryRb
         '.rb'
       end
 
-      def get_filename(name)
+      def get_filename
         parts = [filename_prefix]
-        parts << name.gsub(/\.rb$/, '') if name
+        parts << @key_name.gsub(/\.rb$/, '') unless @key_name.empty?
         parts * '_' + filename_extname
       end
-    end
   end
 end
