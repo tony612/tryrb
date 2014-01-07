@@ -18,6 +18,40 @@ describe TryRb::CLI do
     end
   end
 
+  describe '#exec' do
+    before :each do
+      FileUtils.mkdir_p 'tmp/foo/tryrb'
+      FileUtils.touch 'tmp/foo/tryrb/20140101000000_foo.rb'
+      FileUtils.touch 'tmp/foo/tryrb/20140102000000_foo.rb'
+      FileUtils.touch 'tmp/foo/tryrb/20140103000000_bar.rb'
+      expect(TryRb::Config.instance).to receive(:expanded_tmp_dir).and_return('tmp/foo/tryrb')
+    end
+    after :each do
+      FileUtils.rm_rf 'tmp/foo'
+    end
+    it 'exec last file' do
+      expect(@cli).to receive(:system).with('ruby tmp/foo/tryrb/20140103000000_bar.rb')
+      @cli.exec
+    end
+    it 'exec last file with filename' do
+      expect(@cli).to receive(:system).with('ruby tmp/foo/tryrb/20140102000000_foo.rb')
+      @cli.exec 'foo'
+    end
+    it 'exec last second file' do
+      expect(@cli).to receive(:options).and_return({last: 2})
+      expect(@cli).to receive(:system).with('ruby tmp/foo/tryrb/20140102000000_foo.rb')
+      @cli.exec
+    end
+    it 'exec last second file with filename' do
+      expect(@cli).to receive(:options).and_return({last: 2})
+      expect(@cli).to receive(:system).with('ruby tmp/foo/tryrb/20140101000000_foo.rb')
+      @cli.exec 'foo'
+    end
+    it 'abort because there is no file' do
+      @cli.stub(:system)
+      expect(@cli).to receive(:options).and_return({last: 4})
+      expect(@cli).to receive(:abort).with("Can't find the file you want")
+      @cli.exec
     end
   end
 end

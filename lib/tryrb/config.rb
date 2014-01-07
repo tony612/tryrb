@@ -30,6 +30,10 @@ module TryRb
       default_config
     end
 
+    def expanded_tmp_dir
+      File.expand_path(tmp_dir)
+    end
+
     private
 
       def default_config
