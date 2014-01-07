@@ -7,14 +7,17 @@ describe TryRb::CLI do
     @cli = TryRb::CLI.new
   end
 
-  describe '#open' do
-    it 'open a file 201401010000.rb' do
+  describe '#create' do
+    it 'create a file 201401010000.rb' do
       expect(@cli).to receive(:system).with('emacs ~/tmp/foo/tryrb/20140101000000.rb')
-      @cli.open
+      @cli.create
     end
-    it 'open a file 20140101000000_foo.rb' do
+    it 'create a file 20140101000000_foo.rb' do
       expect(@cli).to receive(:system).with('emacs ~/tmp/foo/tryrb/20140101000000_foo.rb')
-      @cli.open 'foo'
+      @cli.create 'foo'
+    end
+  end
+
     end
   end
 end

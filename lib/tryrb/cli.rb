@@ -9,13 +9,14 @@ module TryRb
       super
     end
 
-    desc "open [FILENAME]", 'open a file to edit (short-cut alias: "o")'
-    def open(key_name="")
+    desc "create [FILENAME]", 'create a file to edit (short-cut alias: "c")'
+    def create(key_name="")
       @key_name = key_name
       system([@config.editor, fullpath] * ' ')
     end
 
-    map 'o' => :open
+    map 'c' => :create
+
 
     private
 
