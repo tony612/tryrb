@@ -1,6 +1,7 @@
 # The Tryrb Gem
 
 [![Gem Version](https://badge.fury.io/rb/tryrb.png)][gem]
+
 [gem]: https://rubygems.org/gems/tryrb
 
 #### Try ruby in a fascinating way
@@ -99,3 +100,14 @@ $ tryrb help command
 ```
 
 The command is `create`, `c`, `exec` or `e` for the moment.
+
+## Contributing
+
+Welcome contributing by forking, sending [pull requests](/../../pulls) or opening [issues](/../../issues).
+
+## Copyright
+
+Copyright (c) 2014 Tony Han. See [LICENSE][] for details.
+
+[license]: LICENSE.md
+
