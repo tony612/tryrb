@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Tryrb by tony612</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Tryrb</h1>
+        <p>Try a ruby script in a fascinating way</p>
+        <p class="view"><a href="https://github.com/tony612/tryrb">View the Project on GitHub <small>tony612/tryrb</small></a></p>
+        <ul>
+          <li><a href="https://github.com/tony612/tryrb/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/tony612/tryrb/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/tony612/tryrb">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="the-tryrb-gem" class="anchor" href="#the-tryrb-gem"><span class="octicon octicon-link"></span></a>The Tryrb Gem</h1>
+
+<p><a href="https://rubygems.org/gems/tryrb"><img src="https://badge.fury.io/rb/tryrb.png" alt="Gem Version"></a></p>
+
+<h4>
+<a name="try-ruby-in-a-fascinating-way" class="anchor" href="#try-ruby-in-a-fascinating-way"><span class="octicon octicon-link"></span></a>Try ruby in a fascinating way</h4>
+
+<p>Create and execute a temp file by one command.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<pre><code>$ gem install tryrb
+</code></pre>
+
+<h2>
+<a name="why-creating-this" class="anchor" href="#why-creating-this"><span class="octicon octicon-link"></span></a>Why creating this?</h2>
+
+<p>Maybe you often try ruby scripts like this:</p>
+
+<pre><code>$ cd ~/tmp
+$ vim foooooooo.rb
+$ ruby foooooooo.rb
+</code></pre>
+
+<p>You have to change working directory, figure out a name, finally try to
+find the right file to run.It's bothering! <img class="emoji" title=":anger:" alt=":anger:" src="https://github.global.ssl.fastly.net/images/icons/emoji/anger.png" height="20" width="20" align="absmiddle"></p>
+
+<p>But this gem provide an easy way to do this. <img class="emoji" title=":yellow_heart:" alt=":yellow_heart:" src="https://github.global.ssl.fastly.net/images/icons/emoji/yellow_heart.png" height="20" width="20" align="absmiddle"></p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h5>
+<a name="the-simplest-and-fastest-way" class="anchor" href="#the-simplest-and-fastest-way"><span class="octicon octicon-link"></span></a>The simplest and fastest way:</h5>
+
+<pre><code>$ tryrb c(reate)
+# Editing ruby code
+$ tryrb e(xec)
+</code></pre>
+
+<p>A file named, for exmaple, <code>201401010909.rb</code> will be created and executed.</p>
+
+<p>More options:</p>
+
+<h3>
+<a name="create-a-temp-file" class="anchor" href="#create-a-temp-file"><span class="octicon octicon-link"></span></a>Create a temp file</h3>
+
+<p>Specify a name</p>
+
+<pre><code>$ tryrb create foo
+</code></pre>
+
+<p>A file named, for exmaple, <code>201401010909_foo.rb</code> will be created.</p>
+
+<h3>
+<a name="execute-a-ruby-script" class="anchor" href="#execute-a-ruby-script"><span class="octicon octicon-link"></span></a>Execute a ruby script</h3>
+
+<p>Last one file in your temp dir</p>
+
+<pre><code>$ tryrb exec
+</code></pre>
+
+<p>The last one file containing <code>foo</code></p>
+
+<pre><code>$ tryrb exec foo
+</code></pre>
+
+<p>Nth from the bottom file</p>
+
+<pre><code>$ tryrb exec -l n
+</code></pre>
+
+<p>Nth from the bottom file containing name <code>foo</code></p>
+
+<pre><code>$ tryrb exec -l n foo
+</code></pre>
+
+<h3>
+<a name="config" class="anchor" href="#config"><span class="octicon octicon-link"></span></a>Config</h3>
+
+<p>You can configure your editor and temp directory via a file in <code>~/.tryrbrc</code>, it looks like this:</p>
+
+<div class="highlight highlight-yaml"><pre><span class="l-Scalar-Plain">tmp_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">~/tmp/tryrb</span>
+<span class="l-Scalar-Plain">editor</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">vim</span>
+</pre></div>
+
+<p>So that the file your create will be created using vim in <code>~/tmp/tryrb</code> directory.</p>
+
+<h3>
+<a name="alias" class="anchor" href="#alias"><span class="octicon octicon-link"></span></a>Alias</h3>
+
+<p><code>c</code> is alias of <code>create</code>, and <code>e</code> is alias of <code>exec</code>.</p>
+
+<h3>
+<a name="get-help" class="anchor" href="#get-help"><span class="octicon octicon-link"></span></a>Get help</h3>
+
+<pre><code>$ tryrb help command
+</code></pre>
+
+<p>The command is <code>create</code>, <code>c</code>, <code>exec</code> or <code>e</code> for the moment.</p>
+
+<h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>Welcome contributing by forking, sending <a href="/../../pulls">pull requests</a> or opening <a href="/../../issues">issues</a>.</p>
+
+<h2>
+<a name="copyright" class="anchor" href="#copyright"><span class="octicon octicon-link"></span></a>Copyright</h2>
+
+<p>Copyright (c) 2014 Tony Han. See <a href="LICENSE.md">LICENSE</a> for details.</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/tony612">tony612</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
