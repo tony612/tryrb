@@ -43,7 +43,7 @@ More options:
 
 ### Create a temp file
 
-##### Specify a name
+Specify a name
 
 ```
 $ tryrb create foo
@@ -53,25 +53,25 @@ A file named, for exmaple, `201401010909_foo.rb` will be created.
 
 ### Execute a ruby script
 
-##### Last one file in your temp dir
+Last one file in your temp dir
 
 ```
 $ tryrb exec
 ```
 
-##### Last one file containing `foo`
+The last one file containing `foo`
 
 ```
 $ tryrb exec foo
 ```
 
-##### Last nth file
+Nth from the bottom file
 
 ```
 $ tryrb exec -l n
 ```
 
-##### Last nth file containing name `foo`
+Nth from the bottom file containing name `foo`
 
 ```
 $ tryrb exec -l n foo
