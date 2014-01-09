@@ -5,7 +5,7 @@
 
 #### Try ruby in a fascinating way
 
-Open a temp file to edit using your favorite editor by one command.
+Create and execute a temp file by one command.
 
 ## Installation
 
@@ -15,7 +15,7 @@ $ gem install tryrb
 
 ## Why creating this?
 
-Maybe you try some some ruby scripts like this often:
+Maybe you often try ruby scripts like this:
 
 ```
 $ cd ~/tmp
@@ -23,9 +23,10 @@ $ vim foooooooo.rb
 $ ruby foooooooo.rb
 ```
 
-You have to change working directory, figure out a name(and make sure it doesn't exist), finally try to find the file to run.It's bothering!😡
+You have to change working directory, figure out a name, finally try to
+find the right file to run.It's bothering! :anger:
 
-But this gem provide an easy way to do this.💛
+But this gem provide an easy way to do this. :yellow_heart:
 
 ## Usage
 
