@@ -27,6 +27,24 @@ module TryRb
 
     map 'e' => :exec
 
+    desc 'config', "Config your editor and tmp_dir via command"
+    def config
+      tmp_dir = ask("Please specify your dir of the tmp files(default: ~/tmp/tryrb):")
+      tmp_dir = "~/tmp/tryrb" if tmp_dir.empty?
+
+      editor = ask("Please specify your favorite editor(default: vim):")
+      editor = "vim" if editor.empty?
+
+      config = {'tmp_dir' => tmp_dir, 'editor' => editor}
+
+      rc_path = File.expand_path('~/.tryrbrc')
+      File.open(rc_path, 'w') do |f|
+        f.write(config.to_yaml)
+      end
+
+      say("The config have been writen to ~/.tryrbrc", :green)
+    end
+
     private
 
       def find_file(options={})
