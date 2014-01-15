@@ -54,4 +54,18 @@ describe TryRb::CLI do
       @cli.exec
     end
   end
+
+  describe '#config' do
+    before :each do
+      @shell = TryRb::CLI::Shell::Basic.new
+    end
+    after :each do
+      FileUtils.rm project_path + '/tmp/.tryrbrc'
+    end
+    it "save config data in tryrbrc" do
+      expect(TryRb::Config.instance).to receive(:expanded_rc_path).and_return('./tmp/.tryrbrc')
+      TryRb::CLI.new.config
+      expect(File.open('./tmp/.tryrbrc').read).to eq("---\ntmp_dir: \"~/foo/tryrb\"\neditor: emacs\n")
+    end
+  end
 end
