@@ -37,7 +37,7 @@ module TryRb
 
       config = {'tmp_dir' => tmp_dir, 'editor' => editor}
 
-      rc_path = File.expand_path('~/.tryrbrc')
+      rc_path = TryRb::Config.instance.expanded_rc_path
       File.open(rc_path, 'w') do |f|
         f.write(config.to_yaml)
       end

@@ -4,7 +4,6 @@ module TryRb
   class Config
     include Singleton
     attr_reader :path
-    FILE_NAME = '.tryrbrc'
 
     %w[tmp_dir editor].each do |key|
       define_method key.to_sym do
@@ -13,7 +12,7 @@ module TryRb
     end
 
     def initialize
-      @path = File.join(File.expand_path('~'), FILE_NAME)
+      @path = expanded_rc_path
       @data = load_file
     end
 
@@ -28,6 +27,10 @@ module TryRb
       YAML.load_file(@path)
     rescue Errno::ENOENT
       default_config
+    end
+
+    def expanded_rc_path
+      File.expand_path('~/.tryrbrc')
     end
 
     def expanded_tmp_dir
