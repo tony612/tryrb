@@ -111,3 +111,7 @@ Copyright (c) 2014 Tony Han. See [LICENSE][] for details.
 
 [license]: LICENSE.md
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/tony612/tryrb/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
