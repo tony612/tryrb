@@ -4,6 +4,8 @@
 
 [![Dependency Status](https://gemnasium.com/tony612/tryrb.png)](https://gemnasium.com/tony612/tryrb)
 
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/tony612/tryrb/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 #### Try ruby in a fascinating way
 
 Create and execute a temp file by one command.
@@ -110,8 +112,4 @@ Welcome contributing by forking, sending [pull requests](/../../pulls) or openin
 Copyright (c) 2014 Tony Han. See [LICENSE][] for details.
 
 [license]: LICENSE.md
-
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/tony612/tryrb/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
