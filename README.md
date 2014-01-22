@@ -1,8 +1,8 @@
 # The Tryrb Gem
 
-[![Gem Version](https://badge.fury.io/rb/tryrb.png)][gem]
+[![Gem Version](https://badge.fury.io/rb/tryrb.png)][https://rubygems.org/gems/tryrb]
 
-[gem]: https://rubygems.org/gems/tryrb
+[![Dependency Status](https://gemnasium.com/tony612/tryrb.png)](https://gemnasium.com/tony612/tryrb)
 
 #### Try ruby in a fascinating way
 
