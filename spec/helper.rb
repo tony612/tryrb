@@ -1,3 +1,14 @@
+require 'simplecov'
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+  SimpleCov::Formatter::HTMLFormatter
+]
+
+SimpleCov.start do
+  add_filter '/spec/'
+  minimum_coverage(99)
+end
+
 require 'tryrb'
 require 'rspec'
 require 'fakefs/spec_helpers'

@@ -7,6 +7,7 @@ end
 group :test do
   gem 'rspec'
   gem 'fakefs'
+  gem 'simplecov', :require => false
 end
 
 gemspec
