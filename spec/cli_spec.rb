@@ -68,7 +68,11 @@ describe TryRb::CLI do
       expect(cli).to receive(:ask).with("Please specify your dir of the tmp files(default: ~/tmp/tryrb):").and_return('~/foo/tryrb')
       expect(cli).to receive(:ask).with("Please specify your favorite editor(default: vim):").and_return('emacs')
       cli.config
-      expect(File.open('./tmp/.tryrbrc').read).to eq("---\ntmp_dir: \"~/foo/tryrb\"\neditor: emacs\n")
+      if RUBY_VERSION < '2.1.0'
+        expect(File.open('./tmp/.tryrbrc').read).to eq("---\ntmp_dir: ~/foo/tryrb\neditor: emacs\n")
+      else
+        expect(File.open('./tmp/.tryrbrc').read).to eq("---\ntmp_dir: \"~/foo/tryrb\"\neditor: emacs\n")
+      end
     end
   end
 end
