@@ -16,6 +16,17 @@ describe TryRb::CLI do
       expect(@cli).to receive(:system).with('emacs ~/tmp/foo/tryrb/20140101000000_foo.rb')
       @cli.create 'foo'
     end
+    it 'abort caused by existing file' do
+      FakeFS.activate!
+      FileUtils.mkdir_p '/tmp'
+      FileUtils.touch '/tmp/foo'
+      @cli.stub(:system)
+      expect(TryRb::Config.instance).to receive(:expanded_tmp_dir).and_return('/tmp/foo/tryrb')
+      expect(@cli).to receive(:abort).with("File foo exists. The tmp directory can't be created! Please delete the file first.")
+      @cli.create
+      FileUtils.rm_rf '/tmp/foo'
+      FakeFS.deactivate!
+    end
   end
 
   describe '#exec' do
