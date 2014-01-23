@@ -3,6 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/tryrb.png)](https://rubygems.org/gems/tryrb)
 [![Dependency Status](https://gemnasium.com/tony612/tryrb.png)](https://gemnasium.com/tony612/tryrb)
 [![Build Status](https://travis-ci.org/tony612/tryrb.png?branch=master)](https://travis-ci.org/tony612/tryrb)
+[![Coverage Status](https://coveralls.io/repos/tony612/tryrb/badge.png?branch=master)](https://coveralls.io/r/tony612/tryrb?branch=master)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/tony612/tryrb/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 #### Try ruby in a fascinating way
