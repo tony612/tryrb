@@ -1,8 +1,11 @@
 source 'https://rubygems.org'
 
+group :development do
+  gem 'guard-rspec'
+end
+
 group :test do
   gem 'rspec'
-  gem 'guard-rspec', require: false
 end
 
 gemspec
