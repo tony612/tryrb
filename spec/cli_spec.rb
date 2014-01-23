@@ -20,31 +20,33 @@ describe TryRb::CLI do
 
   describe '#exec' do
     before :each do
-      FileUtils.mkdir_p 'tmp/foo/tryrb'
-      FileUtils.touch 'tmp/foo/tryrb/20140101000000_foo.rb'
-      FileUtils.touch 'tmp/foo/tryrb/20140102000000_foo.rb'
-      FileUtils.touch 'tmp/foo/tryrb/20140103000000_bar.rb'
-      expect(TryRb::Config.instance).to receive(:expanded_tmp_dir).and_return('tmp/foo/tryrb')
+      FakeFS.activate!
+      FileUtils.mkdir_p '/tmp/foo/tryrb'
+      FileUtils.touch '/tmp/foo/tryrb/20140101000000_foo.rb'
+      FileUtils.touch '/tmp/foo/tryrb/20140102000000_foo.rb'
+      FileUtils.touch '/tmp/foo/tryrb/20140103000000_bar.rb'
+      expect(TryRb::Config.instance).to receive(:expanded_tmp_dir).and_return('/tmp/foo/tryrb')
     end
     after :each do
-      FileUtils.rm_rf 'tmp/foo'
+      FileUtils.rm_rf '/tmp/foo'
+      FakeFS.deactivate!
     end
     it 'exec last file' do
-      expect(@cli).to receive(:system).with('ruby tmp/foo/tryrb/20140103000000_bar.rb')
+      expect(@cli).to receive(:system).with('ruby /tmp/foo/tryrb/20140103000000_bar.rb')
       @cli.exec
     end
     it 'exec last file with filename' do
-      expect(@cli).to receive(:system).with('ruby tmp/foo/tryrb/20140102000000_foo.rb')
+      expect(@cli).to receive(:system).with('ruby /tmp/foo/tryrb/20140102000000_foo.rb')
       @cli.exec 'foo'
     end
     it 'exec last second file' do
       expect(@cli).to receive(:options).and_return({:last => 2})
-      expect(@cli).to receive(:system).with('ruby tmp/foo/tryrb/20140102000000_foo.rb')
+      expect(@cli).to receive(:system).with('ruby /tmp/foo/tryrb/20140102000000_foo.rb')
       @cli.exec
     end
     it 'exec last second file with filename' do
       expect(@cli).to receive(:options).and_return({:last => 2})
-      expect(@cli).to receive(:system).with('ruby tmp/foo/tryrb/20140101000000_foo.rb')
+      expect(@cli).to receive(:system).with('ruby /tmp/foo/tryrb/20140101000000_foo.rb')
       @cli.exec 'foo'
     end
     it 'abort because there is no file' do
@@ -58,20 +60,22 @@ describe TryRb::CLI do
   describe '#config' do
     before :each do
       @shell = TryRb::CLI::Shell::Basic.new
+      FakeFS.activate!
     end
     after :each do
-      FileUtils.rm project_path + '/tmp/.tryrbrc'
+      FileUtils.rm '/tmp/.tryrbrc'
+      FakeFS.deactivate!
     end
     it "save config data in tryrbrc" do
       cli = TryRb::CLI.new
-      expect(TryRb::Config.instance).to receive(:expanded_rc_path).and_return('./tmp/.tryrbrc')
+      expect(TryRb::Config.instance).to receive(:expanded_rc_path).and_return('/tmp/.tryrbrc')
       expect(cli).to receive(:ask).with("Please specify your dir of the tmp files(default: ~/tmp/tryrb):").and_return('~/foo/tryrb')
       expect(cli).to receive(:ask).with("Please specify your favorite editor(default: vim):").and_return('emacs')
       cli.config
       if RUBY_VERSION < '2.1.0'
-        expect(File.open('./tmp/.tryrbrc').read).to eq("---\ntmp_dir: ~/foo/tryrb\neditor: emacs\n")
+        expect(File.open('/tmp/.tryrbrc').read).to eq("---\ntmp_dir: ~/foo/tryrb\neditor: emacs\n")
       else
-        expect(File.open('./tmp/.tryrbrc').read).to eq("---\ntmp_dir: \"~/foo/tryrb\"\neditor: emacs\n")
+        expect(File.open('/tmp/.tryrbrc').read).to eq("---\ntmp_dir: \"~/foo/tryrb\"\neditor: emacs\n")
       end
     end
   end
