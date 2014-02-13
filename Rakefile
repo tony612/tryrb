@@ -9,3 +9,9 @@ end
 
 desc "Run tests"
 task :default => :test
+task :console do
+  require 'pry'
+  require 'tryrb'
+  ARGV.clear
+  Pry.start
+end
