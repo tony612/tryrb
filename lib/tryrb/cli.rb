@@ -32,11 +32,13 @@ module TryRb
 
     desc 'config', "Config your editor and tmp_dir via command"
     def config
-      tmp_dir = ask("Please specify your dir of the tmp files(default: ~/tmp/tryrb):")
-      tmp_dir = "~/tmp/tryrb" if tmp_dir.empty?
+      default_tmp_path = "~/tmp/tryrb"
+      tmp_dir = ask("Please specify your dir of the tmp files(default: #{default_tmp_path}):")
+      tmp_dir = default_tmp_path if tmp_dir.empty?
 
-      editor = ask("Please specify your favorite editor(default: vim):")
-      editor = "vim" if editor.empty?
+      default_editor = "vim"
+      editor = ask("Please specify your favorite editor(default: #{default_editor}):")
+      editor = default_editor if editor.empty?
 
       config = {'tmp_dir' => tmp_dir, 'editor' => editor}
 
