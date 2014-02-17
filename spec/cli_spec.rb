@@ -3,7 +3,7 @@ require 'helper'
 describe TryRb::CLI do
   before :each do
     Time.stub(:now) { Date.parse('2014-1-1').to_time }
-    TryRb::Config.instance.path = fixture_file_path('tryrbrc')
+    TryRb::Config.instance.stub(:expanded_rc_path) { fixture_file_path('tryrbrc') }
     @cli = TryRb::CLI.new
   end
 

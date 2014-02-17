@@ -3,28 +3,20 @@ require 'singleton'
 module TryRb
   class Config
     include Singleton
-    attr_reader :path
 
     %w[tmp_dir editor].each do |key|
       define_method key.to_sym do
-        @data[key]
+        data[key]
       end
     end
 
-    def initialize
-      @path = expanded_rc_path
-      @data = load_file
-    end
-
-    def path=(path)
-      @path = path
-      @data = load_file
-      @path
+    def data
+      @data ||= load_file
     end
 
     def load_file
       require 'yaml'
-      YAML.load_file(@path)
+      YAML.load_file(expanded_rc_path)
     rescue Errno::ENOENT
       TryRb::CLI::Shell::Color.new.say("Please run `tryrb config` to configure.", :red)
       abort

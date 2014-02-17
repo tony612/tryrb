@@ -5,14 +5,19 @@ require 'tryrb/config'
 module TryRb
   class CLI < Thor
     def initialize(*)
-      @config = TryRb::Config.instance
       super
+    end
+
+    no_commands do
+      def conf
+        TryRb::Config.instance
+      end
     end
 
     desc "create [FILENAME]", 'create a file to edit (short-cut alias: "c")'
     def create(key_name="")
       @key_name = key_name
-      system([@config.editor, fullpath] * ' ')
+      system([conf.editor, fullpath] * ' ')
     end
     map 'c' => :create
 
@@ -35,7 +40,7 @@ module TryRb
 
       config = {'tmp_dir' => tmp_dir, 'editor' => editor}
 
-      rc_path = TryRb::Config.instance.expanded_rc_path
+      rc_path = conf.expanded_rc_path
       File.open(rc_path, 'w') do |f|
         f.write(config.to_yaml)
       end
@@ -48,16 +53,16 @@ module TryRb
       def find_file(options={})
         filename = options[:filename]
         last_n   = options[:last_n] || 1
-        names = Dir[File.join(@config.expanded_tmp_dir, '*.rb')]
+        names = Dir[File.join(conf.expanded_tmp_dir, '*.rb')]
         names = names.select { |n| n =~ /#{filename}\.rb$/ } if filename
         names[-last_n]
       end
 
       def fullpath
         filename = get_filename
-        expanded_path = @config.expanded_tmp_dir
+        expanded_path = conf.expanded_tmp_dir
         FileUtils.mkdir_p expanded_path unless Dir.exists?(expanded_path)
-        File.join @config.tmp_dir, filename
+        File.join conf.tmp_dir, filename
       rescue Errno::EEXIST => e
         abort "File #{e.message.split[-1]} exists. The tmp directory can't be created! Please delete the file first."
       end

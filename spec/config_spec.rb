@@ -15,7 +15,7 @@ describe TryRb::Config do
   describe '#tmp_dir' do
     it "returns tmp dir" do
       config = TryRb::Config.instance
-      config.path = fixture_file_path('tryrbrc')
+      config.stub(:expanded_rc_path) { fixture_file_path('tryrbrc') }
       expect(config.tmp_dir).to eq '~/tmp/foo/tryrb'
     end
   end
@@ -23,21 +23,8 @@ describe TryRb::Config do
   describe '#editor' do
     it "returns editor" do
       config = TryRb::Config.instance
-      config.path = fixture_file_path('tryrbrc')
+      config.stub(:expanded_rc_path) { fixture_file_path('tryrbrc') }
       expect(config.editor).to eq 'emacs'
-    end
-  end
-
-  describe '#path=' do
-    it 'overrides path' do
-      config = TryRb::Config.instance
-      config.path = fixture_file_path('foorc')
-      expect(config.path).to eq fixture_file_path('foorc')
-    end
-    it 'reloads data' do
-      config = TryRb::Config.instance
-      config.path = fixture_file_path('tryrbrc')
-      expect(config.load_file.keys).to eq %w[tmp_dir editor]
     end
   end
 
@@ -45,7 +32,7 @@ describe TryRb::Config do
     context 'when file exists at path' do
       it 'loads data from the file' do
         config = TryRb::Config.instance
-        config.path = fixture_file_path('tryrbrc')
+        config.stub(:expanded_rc_path) { fixture_file_path('tryrbrc') }
         expect(config.tmp_dir).to eq '~/tmp/foo/tryrb'
       end
     end
