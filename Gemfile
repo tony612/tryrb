@@ -4,7 +4,6 @@ group :development do
   gem 'pry'
   gem 'pry-debugger'
   gem 'pry-rescue'
-  require 'pry'
   gem 'guard-rspec'
 end
 
