@@ -52,8 +52,10 @@ describe TryRb::Config do
     context 'when file does not exist' do
       it 'loads default data' do
         config = TryRb::Config.instance
-        config.path = fixture_file_path('foorc')
-        expect(config.tmp_dir).to eq '~/tmp/tryrb'
+        config.stub(:expanded_rc_path) { fixture_file_path('foorc') }
+        expect(config).to receive(:abort)
+        TryRb::CLI::Shell::Color.any_instance.stub(:say)
+        config.load_file
       end
     end
   end

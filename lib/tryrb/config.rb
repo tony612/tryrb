@@ -26,7 +26,8 @@ module TryRb
       require 'yaml'
       YAML.load_file(@path)
     rescue Errno::ENOENT
-      default_config
+      TryRb::CLI::Shell::Color.new.say("Please run `tryrb config` to configure.", :red)
+      abort
     end
 
     def expanded_rc_path
@@ -37,11 +38,5 @@ module TryRb
       File.expand_path(tmp_dir)
     end
 
-    private
-
-      def default_config
-        {'tmp_dir' => "~/tmp/tryrb",
-         'editor'  => 'mvim'}
-      end
   end
 end
