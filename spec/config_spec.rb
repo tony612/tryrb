@@ -28,7 +28,7 @@ describe TryRb::Config do
     end
   end
 
-  describe 'load_file' do
+  describe '#load_file' do
     context 'when file exists at path' do
       it 'loads data from the file' do
         config = TryRb::Config.instance
@@ -44,6 +44,13 @@ describe TryRb::Config do
         TryRb::CLI::Shell::Color.any_instance.stub(:say)
         config.load_file
       end
+    end
+  end
+
+  describe '#expanded_rc_path' do
+    it 'returns right tryrbrc' do
+      expect(File).to receive(:expand_path).with('~/.tryrbrc')
+      TryRb::Config.instance.expanded_rc_path
     end
   end
 end
