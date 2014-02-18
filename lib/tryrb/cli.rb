@@ -53,6 +53,7 @@ module TryRb
         filename = options[:filename]
         last_n   = options[:last_n] || 1
         names = Dir[File.join(conf.expanded_tmp_dir, '*.rb')]
+                  .select { |n| n =~ /\d{14}/ }
         names = names.select { |n| n =~ /#{filename}\.rb$/ } if filename
         names[-last_n]
       end
