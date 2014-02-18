@@ -1,6 +1,7 @@
 require 'fileutils'
 require 'thor'
 require 'tryrb/config'
+require 'yaml'
 
 module TryRb
   class CLI < Thor
