@@ -4,10 +4,6 @@ require 'tryrb/config'
 
 module TryRb
   class CLI < Thor
-    def initialize(*)
-      super
-    end
-
     no_commands do
       def conf
         TryRb::Config.instance
