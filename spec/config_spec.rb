@@ -37,11 +37,11 @@ describe TryRb::Config do
       end
     end
     context 'when file does not exist' do
-      it 'loads default data' do
+      it 'reminds to config and abort' do
         config = TryRb::Config.instance
         config.stub(:expanded_rc_path) { fixture_file_path('foorc') }
         expect(config).to receive(:abort)
-        TryRb::CLI::Shell::Color.any_instance.stub(:say)
+        expect(config).to receive(:puts).with("\e[31mPlease run `tryrb config` to configure.\e[0m")
         config.load_file
       end
     end

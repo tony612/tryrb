@@ -18,7 +18,7 @@ module TryRb
       require 'yaml'
       YAML.load_file(expanded_rc_path)
     rescue Errno::ENOENT
-      TryRb::CLI::Shell::Color.new.say("Please run `tryrb config` to configure.", :red)
+      print_red("Please run `tryrb config` to configure.")
       abort
     end
 
@@ -30,5 +30,9 @@ module TryRb
       File.expand_path(tmp_dir)
     end
 
+    private
+      def print_red(str)
+        puts "\e[31m#{str}\e[0m"
+      end
   end
 end
