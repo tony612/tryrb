@@ -95,10 +95,10 @@ A configure file `~/.tryrbrc` will be created.
 ### Get help
 
 ```
-$ tryrb help command
+$ tryrb help COMMAND
 ```
 
-The command is `create`, `c`, `exec` or `e` for the moment.
+The COMMAND is `create`, `c`, `exec` or `e` for the moment.
 
 ## Contributing
 
