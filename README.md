@@ -83,14 +83,10 @@ $ tryrb exec -l n foo
 
 ### Config
 
-You can configure your editor and temp directory via a file in `~/.tryrbrc`, it looks like this:
-
-```yaml
-tmp_dir: ~/tmp/tryrb
-editor: vim
 ```
-
-So that the file your create will be created using vim in `~/tmp/tryrb` directory.
+tryrb config
+```
+A configure file `~/.tryrbrc` will be created.
 
 ### Alias
 
