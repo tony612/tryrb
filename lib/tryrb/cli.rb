@@ -5,12 +5,6 @@ require 'yaml'
 
 module TryRb
   class CLI < Thor
-    no_commands do
-      def conf
-        TryRb::Config.instance
-      end
-    end
-
     desc "create [FILENAME]", 'create a file to edit (short-cut alias: "c")'
     def create(key_name="")
       @key_name = key_name
@@ -57,6 +51,10 @@ module TryRb
     end
 
     private
+
+      def conf
+        TryRb::Config.instance
+      end
 
       def find_file(options={})
         filename = options[:filename]
