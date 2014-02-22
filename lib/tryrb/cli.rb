@@ -27,6 +27,15 @@ module TryRb
     end
     map 'e' => :exec
 
+    option :last, :aliases => "-l", :banner => 'N', :desc => 'open the last N file in the files you specify via filename to edit, default is the 1', :type => :numeric, :lazy_default => 1
+    desc "open [FILENAME]", 'open a ruby script to edit, default is last one of all files (short-cut alias: "o")'
+    def open(filename=nil)
+      file_path = find_file(:filename => filename, :last_n => options[:last])
+      abort "Can't find the file you want" unless file_path
+      system([conf.editor, file_path] * ' ')
+    end
+    map 'o' => :open
+
     desc 'config', "Config your editor and tmp_dir via command"
     def config
       default_tmp_path = "~/tmp/tryrb"

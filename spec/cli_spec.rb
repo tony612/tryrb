@@ -90,4 +90,45 @@ describe TryRb::CLI do
       end
     end
   end
+
+  describe '#open' do
+    before :each do
+      FakeFS.activate!
+      FileUtils.mkdir_p '/tmp/tryrb'
+      FileUtils.touch '/tmp/tryrb/20140101000000_foo.rb'
+      FileUtils.touch '/tmp/tryrb/20140102000000_foo.rb'
+      FileUtils.touch '/tmp/tryrb/20140103000000_bar.rb'
+      TryRb::Config.instance.stub(:editor) { 'emacs' }
+      TryRb::Config.instance.stub(:tmp_dir) { '/tmp/tryrb' }
+      TryRb::Config.instance.stub(:expanded_tmp_dir) { '/tmp/tryrb' }
+    end
+    after :each do
+      FileUtils.rm_rf '/tmp'
+      FakeFS.deactivate!
+    end
+    it 'open last file' do
+      expect(@cli).to receive(:system).with('emacs /tmp/tryrb/20140103000000_bar.rb')
+      @cli.open
+    end
+    it 'open last file with filename' do
+      expect(@cli).to receive(:system).with('emacs /tmp/tryrb/20140102000000_foo.rb')
+      @cli.open 'foo'
+    end
+    it 'open last second file' do
+      expect(@cli).to receive(:options).and_return({:last => 2})
+      expect(@cli).to receive(:system).with('emacs /tmp/tryrb/20140102000000_foo.rb')
+      @cli.open
+    end
+    it 'open last second file with filename' do
+      expect(@cli).to receive(:options).and_return({:last => 2})
+      expect(@cli).to receive(:system).with('emacs /tmp/tryrb/20140101000000_foo.rb')
+      @cli.open 'foo'
+    end
+    it 'abort because there is no file' do
+      @cli.stub(:system)
+      expect(@cli).to receive(:options).and_return({:last => 4})
+      expect(@cli).to receive(:abort).with("Can't find the file you want")
+      @cli.open
+    end
+  end
 end
