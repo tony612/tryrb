@@ -37,9 +37,9 @@ But this gem provide an easy way to do this. :yellow_heart:
 ##### The simplest and fastest way:
 
 ```
-$ tryrb c(reate)
+$ tryrb c/create
 # Editing ruby code
-$ tryrb e(xec)
+$ tryrb e/exec
 ```
 A file named, for exmaple, `201401010909.rb` will be created and executed.
 
@@ -50,7 +50,7 @@ More options:
 Specify a name
 
 ```
-$ tryrb create foo
+$ tryrb c/create foo
 ```
 
 A file named, for exmaple, `201401010909_foo.rb` will be created.
@@ -60,25 +60,25 @@ A file named, for exmaple, `201401010909_foo.rb` will be created.
 Last one file in your temp dir
 
 ```
-$ tryrb exec
+$ tryrb e/exec
 ```
 
 The last one file containing `foo`
 
 ```
-$ tryrb exec foo
+$ tryrb e/exec foo
 ```
 
 Nth from the bottom file
 
 ```
-$ tryrb exec -l n
+$ tryrb e/exec -l n
 ```
 
 Nth from the bottom file containing name `foo`
 
 ```
-$ tryrb exec -l n foo
+$ tryrb e/exec -l n foo
 ```
 
 ### Open a ruby script to edit
@@ -98,15 +98,13 @@ A configure file `~/.tryrbrc` will be created.
 
 ### Alias
 
-`c` is alias of `create`, and `e` is alias of `exec`.
+`c` is alias of `create`, `e` is alias of `exec` and `o` is alias of `open`.
 
 ### Get help
 
 ```
 $ tryrb help COMMAND
 ```
-
-The COMMAND is `create`, `c`, `exec` or `e` for the moment.
 
 ## Contributing
 
