@@ -81,6 +81,14 @@ Nth from the bottom file containing name `foo`
 $ tryrb exec -l n foo
 ```
 
+### Open a ruby script to edit
+
+(**It's same with `exec` usage**)
+
+```
+$ tryrb o/open
+```
+
 ### Config
 
 ```
